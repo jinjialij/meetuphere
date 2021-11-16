@@ -37,4 +37,4 @@ app.use("/", indexRouter);
 app.use("/meetups", meetupRouter);
 app.use("/countries", countryRouter);
 
-app.listen(process.env.PORT || 5000);
+app.listen(process.env.PORT || 3000);
