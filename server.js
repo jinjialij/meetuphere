@@ -6,7 +6,7 @@ const cors = require("cors");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-// const indexRouter = require("./routes/index");
+const indexRouter = require("./routes/index");
 const meetupRouter = require("./routes/meetup");
 const countryRouter = require("./routes/country");
 
@@ -33,7 +33,8 @@ mongoose
 //   console.log("connection succeed");
 // });
 
-app.use("/", meetupRouter);
+app.use("/", indexRouter);
+app.use("/meetups", meetupRouter);
 app.use("/countries", countryRouter);
 
 app.listen(process.env.PORT || 5000);
