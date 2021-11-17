@@ -2,6 +2,11 @@
 
 This project was build with [Express](http://expressjs.com/) and MongoDB
 
+It has two routes:
+
+- [meetups](https://meetuphere.herokuapp.com/meetups)
+- [countries](https://meetuphere.herokuapp.com/countries)
+
 ## Hosting url
 
 https://meetuphere.herokuapp.com/
