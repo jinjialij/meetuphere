@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const Meetup = require("../models/meetup");
+const paginatedResults = require("../middleware/pagnition");
 
-router.get("/", async (req, res) => {
+router.get("/", paginatedResults(Meetup), async (req, res) => {
   try {
     let serachOptions = {};
     if (req.query.title) {

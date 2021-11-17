@@ -1,1 +1,4 @@
-GET http://localhost:5000/countries/pagination?page=1&limit=10
+GET http://localhost:5000/countries?page=1&limit=20
+
+###
+GET http://localhost:5000/meetups?page=1&limit=20
