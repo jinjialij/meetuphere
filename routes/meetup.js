@@ -2,23 +2,13 @@ const express = require("express");
 const router = express.Router();
 const Meetup = require("../models/meetup");
 const paginatedResults = require("../middleware/pagnition");
+const searchOptions = require("../middleware/searchOptons");
 
-router.get("/", paginatedResults(Meetup), async (req, res) => {
+router.get("/", searchOptions(), paginatedResults(Meetup), async (req, res) => {
   try {
-    let serachOptions = {};
-    if (req.query.title) {
-      console.log(req.query.title);
-      serachOptions.title = new RegExp(req.query.title, "i");
-      console.log(serachOptions);
-    }
-    // {
-    //   title: { $regex: /test/, $options: "i" },
-    // }
-    const meetups = await Meetup.find(serachOptions);
-    console.log(meetups);
     res.status(200).json({
       message: "Meetup fetched successfully!",
-      meetups: meetups,
+      meetups: res.paginatedResults,
     });
   } catch (error) {
     res.status(500).json({
