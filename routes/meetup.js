@@ -56,7 +56,12 @@ router.put("/:id", async (req, res) => {
       },
       { new: true }
     );
-    console.log(updatedMeetup);
+    // console.log(updatedMeetup);
+    if (!updatedMeetup) {
+      return res.status(404).json({
+        message: "Meetup fav doesn't exist",
+      });
+    }
     res.status(200).json({
       message: "Meetup fav updated successfully",
       meetup: updatedMeetup,
@@ -64,6 +69,29 @@ router.put("/:id", async (req, res) => {
   } catch {
     res.status(500).json({
       message: "Error update meetup fav",
+    });
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const deletedMeetup = await Meetup.findByIdAndDelete(id);
+    console.log(`delete succes`);
+    console.log(deletedMeetup);
+    if (!deletedMeetup) {
+      return res.status(404).json({
+        message: "Meetup fav doesn't exist",
+      });
+    }
+    res.status(200).json({
+      message: "Meetup fav deleted successfully",
+      meetup: deletedMeetup,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error to delete meetup fav",
+      error: error.message,
     });
   }
 });

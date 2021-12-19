@@ -10,10 +10,13 @@ GET http://localhost:5000/meetups
 GET http://localhost:5000/meetups?fav=false
 
 ###
-PUT http://localhost:5000/meetups/61be22dd2cd5fffde2bbd42b HTTP/1.1
+PUT http://localhost:5000/meetups/61beb37264f56312f7b9d14a HTTP/1.1
 content-type: application/json
 
 {"fav":true}
+
+###
+DELETE http://localhost:5000/meetups/61beb37264f56312f7b9d14a
 
 ###
 PUT http://localhost:5000/meetups/61be233e2cd5fffde2bbd431 HTTP/1.1
