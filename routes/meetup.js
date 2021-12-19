@@ -77,8 +77,7 @@ router.delete("/:id", async (req, res) => {
   const id = req.params.id;
   try {
     const deletedMeetup = await Meetup.findByIdAndDelete(id);
-    console.log(`delete succes`);
-    console.log(deletedMeetup);
+    // console.log(deletedMeetup);
     if (!deletedMeetup) {
       return res.status(404).json({
         message: "Meetup fav doesn't exist",
