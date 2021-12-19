@@ -24,6 +24,7 @@ router.post("/new-meetup", async (req, res) => {
     image: req.body.image,
     address: req.body.address,
     description: req.body.desc,
+    fav: req.body.fav,
   });
   try {
     const newMeetup = await meetup.save();
@@ -37,6 +38,32 @@ router.post("/new-meetup", async (req, res) => {
   } catch {
     res.status(500).json({
       message: "Error create meetup",
+    });
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const updatedMeetup = await Meetup.findByIdAndUpdate(
+      { _id: id },
+      {
+        title: req.body.title,
+        image: req.body.image,
+        address: req.body.address,
+        description: req.body.desc,
+        fav: req.body.fav,
+      },
+      { new: true }
+    );
+    console.log(updatedMeetup);
+    res.status(200).json({
+      message: "Meetup fav updated successfully",
+      meetup: updatedMeetup,
+    });
+  } catch {
+    res.status(500).json({
+      message: "Error update meetup fav",
     });
   }
 });

@@ -15,6 +15,10 @@ function searchOptions() {
     if (req.query.iso2) {
       searchOptions.iso2 = new RegExp(req.query.iso2, "i");
     }
+
+    if (req.query.fav) {
+      searchOptions.fav = req.query.fav;
+    }
     res.searchOptions = searchOptions;
     next();
   };

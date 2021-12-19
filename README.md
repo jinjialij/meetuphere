@@ -5,7 +5,10 @@ This project was build with [Express](http://expressjs.com/) and MongoDB
 It has two routes:
 
 - [meetups](https://meetuphere.herokuapp.com/meetups)
+  - GET
+  - POST `https://meetuphere.herokuapp.com/meetups/new-meetup`
 - [countries](https://meetuphere.herokuapp.com/countries)
+  - GET
 
 ## Hosting url
 
