@@ -17,5 +17,10 @@ const meetupSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  fav: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 });
 module.exports = mongoose.model("Meetup", meetupSchema);

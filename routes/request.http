@@ -1,0 +1,49 @@
+
+
+###
+GET http://localhost:5000/meetups?page=1&limit=20
+
+###
+GET http://localhost:5000/meetups
+
+###
+GET http://localhost:5000/meetups?fav=false
+
+###
+PUT http://localhost:5000/meetups/61beb37264f56312f7b9d14a HTTP/1.1
+content-type: application/json
+
+{"fav":true}
+
+###
+DELETE http://localhost:5000/meetups/61beb37264f56312f7b9d14a
+
+###
+PUT http://localhost:5000/meetups/61be233e2cd5fffde2bbd431 HTTP/1.1
+content-type: application/json
+
+{"fav":true}
+
+
+###
+GET http://localhost:5000/meetups?title=join
+
+###
+GET http://localhost:5000/meetups?title=join&page=1&limit=20
+###
+GET http://localhost:5000/countries?name=Andorra
+
+###
+GET http://localhost:5000/countries?iso2=A
+
+###
+GET http://localhost:5000/countries?iso2=AS&page=1&limit=1
+
+
+###
+GET http://localhost:5000/countries?iso2=A&page=1&limit=1
+###
+GET http://localhost:5000/countries
+
+###
+GET http://localhost:5000/countries?page=1&limit=20

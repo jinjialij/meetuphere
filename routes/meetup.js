@@ -1,23 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const Meetup = require("../models/meetup");
+const paginatedResults = require("../middleware/pagnition");
+const searchOptions = require("../middleware/searchOptons");
 
-router.get("/", async (req, res) => {
+router.get("/", searchOptions(), paginatedResults(Meetup), async (req, res) => {
   try {
-    let serachOptions = {};
-    if (req.query.title) {
-      console.log(req.query.title);
-      serachOptions.title = new RegExp(req.query.title, "i");
-      console.log(serachOptions);
-    }
-    // {
-    //   title: { $regex: /test/, $options: "i" },
-    // }
-    const meetups = await Meetup.find(serachOptions);
-    console.log(meetups);
     res.status(200).json({
       message: "Meetup fetched successfully!",
-      meetups: meetups,
+      meetups: res.paginatedResults,
     });
   } catch (error) {
     res.status(500).json({
@@ -33,6 +24,7 @@ router.post("/new-meetup", async (req, res) => {
     image: req.body.image,
     address: req.body.address,
     description: req.body.desc,
+    fav: req.body.fav,
   });
   try {
     const newMeetup = await meetup.save();
@@ -46,6 +38,59 @@ router.post("/new-meetup", async (req, res) => {
   } catch {
     res.status(500).json({
       message: "Error create meetup",
+    });
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const updatedMeetup = await Meetup.findByIdAndUpdate(
+      { _id: id },
+      {
+        title: req.body.title,
+        image: req.body.image,
+        address: req.body.address,
+        description: req.body.desc,
+        fav: req.body.fav,
+      },
+      { new: true }
+    );
+    // console.log(updatedMeetup);
+    if (!updatedMeetup) {
+      return res.status(404).json({
+        message: "Meetup fav doesn't exist",
+      });
+    }
+    res.status(200).json({
+      message: "Meetup fav updated successfully",
+      meetup: updatedMeetup,
+    });
+  } catch {
+    res.status(500).json({
+      message: "Error update meetup fav",
+    });
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const deletedMeetup = await Meetup.findByIdAndDelete(id);
+    // console.log(deletedMeetup);
+    if (!deletedMeetup) {
+      return res.status(404).json({
+        message: "Meetup fav doesn't exist",
+      });
+    }
+    res.status(200).json({
+      message: "Meetup fav deleted successfully",
+      meetup: deletedMeetup,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error to delete meetup fav",
+      error: error.message,
     });
   }
 });
