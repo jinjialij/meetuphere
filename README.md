@@ -2,11 +2,13 @@
 
 This project was build with [Express](http://expressjs.com/) and MongoDB
 
-It has two routes:
+It supports following requests:
 
 - [meetups](https://meetuphere.herokuapp.com/meetups)
   - GET
   - POST `https://meetuphere.herokuapp.com/meetups/new-meetup`
+  - PUT `https://meetuphere.herokuapp.com/meetups/:id`
+  - DELETE `https://meetuphere.herokuapp.com/meetups/:id`
 - [countries](https://meetuphere.herokuapp.com/countries)
   - GET
 

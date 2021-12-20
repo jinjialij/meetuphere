@@ -1,7 +1,7 @@
 
 
 ###
-GET http://localhost:5000/meetups?page=1&limit=20
+GET http://localhost:5000/meetups?page=1&limit=2
 
 ###
 GET http://localhost:5000/meetups
@@ -22,7 +22,7 @@ DELETE http://localhost:5000/meetups/61beb37264f56312f7b9d14a
 PUT http://localhost:5000/meetups/61be233e2cd5fffde2bbd431 HTTP/1.1
 content-type: application/json
 
-{"fav":true}
+{"fav":false}
 
 
 ###
